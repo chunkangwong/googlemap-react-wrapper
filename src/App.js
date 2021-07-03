@@ -24,14 +24,8 @@ const DriverMarker = ({ position, driverName }) => {
 };
 
 const MapLegend = () => {
-  const style = {
-    backgroundColor: "white",
-    marginLeft: "5px",
-    padding: "10px",
-    border: "1px solid grey",
-  };
   return (
-    <div style={style}>
+    <div className="MapLegend">
       <h1>Legend</h1>
       <div>
         <img src={TruckIcon} /> Vehicle

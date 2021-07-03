@@ -1,3 +1,10 @@
 .App {
   text-align: center;
 }
+
+.MapLegend {
+  background-color: white;
+  margin-left: 5px;
+  padding: 10px;
+  border: 1px solid grey;
+}
