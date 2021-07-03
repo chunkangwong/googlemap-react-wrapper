@@ -10,7 +10,7 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 
 const MapContext = createContext(null);
 
-const useMap = () => {
+const useGoogleMap = () => {
   const { googleMap } = useContext(MapContext);
   const { map, infoWindow } = googleMap;
   return { map, infoWindow };
@@ -52,7 +52,7 @@ const GoogleMap = ({ apiKey, children, ...props }) => {
 const Map = ({ ...props }) => {
   const mapRef = useRef();
   const { mapDispatcher } = useContext(MapContext);
-  const { map } = useMap();
+  const { map } = useGoogleMap();
 
   useEffect(() => {
     const newMap = new window.google.maps.Map(mapRef.current, { ...props });
@@ -77,7 +77,7 @@ const Map = ({ ...props }) => {
 GoogleMap.Marker = function GoogleMapMarker({ children, ...props }) {
   const markerRef = useRef();
   const [marker, setMarker] = useState(null);
-  const { map, infoWindow } = useMap();
+  const { map, infoWindow } = useGoogleMap();
 
   useEffect(() => {
     const newMarker = new window.google.maps.Marker({ map, ...props });
@@ -106,7 +106,7 @@ GoogleMap.Legend = function GoogleMapLegend({
   ...props
 }) {
   const legenRef = useRef();
-  const { map } = useMap();
+  const { map } = useGoogleMap();
 
   useEffect(() => {
     map?.controls[window.google.maps.ControlPosition[controlPosition]].push(
@@ -123,7 +123,7 @@ GoogleMap.Legend = function GoogleMapLegend({
 
 GoogleMap.Circle = function GoogleMapCircle({ ...props }) {
   const [circle, setCircle] = useState(null);
-  const { map } = useMap();
+  const { map } = useGoogleMap();
 
   useEffect(() => {
     const newCircle = new window.google.maps.Circle({
@@ -140,4 +140,4 @@ GoogleMap.Circle = function GoogleMapCircle({ ...props }) {
   return <div></div>;
 };
 
-export default GoogleMap;
+export { GoogleMap, useGoogleMap };
