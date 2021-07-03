@@ -1,4 +1,4 @@
-A custom React wrapper for Google Map JS API developed for my own project.
+A React app to demonstrate the wrapping of Google Map JS API, developed for my own project.
 
 This wrapper makes use of the [Wrapper component](https://cloud.google.com/blog/products/maps-platform/loading-google-maps-platform-javascript-modern-web-applications) from the @googlemaps/react-wrapper to load the script tag into HTML.
 
@@ -10,7 +10,7 @@ This React wrapper includes the following functionalities: Google Map, Marker, L
 
    ```javascript
    import React from "react";
-   import GoogleMap from "ReactGoogleMap";
+   import GoogleMap from "./components/GoogleMap";
 
    const center = {
      lat: 1.354186,
@@ -34,11 +34,11 @@ This React wrapper includes the following functionalities: Google Map, Marker, L
 
    The implementation of this wrapper is done with compound component in mind, which can be observed below.
 
-   Note: The support for the icon property has only been test with .png format (see below for example).
+   Note: The support for the icon property has only been tested with .png format (see below for example).
 
    ```javascript
    import React from "react";
-   import GoogleMap from "ReactGoogleMap";
+   import GoogleMap from "./components/GoogleMap";
    import TruckIcon from "./truck.png";
 
    const center = {
@@ -65,7 +65,7 @@ This React wrapper includes the following functionalities: Google Map, Marker, L
 
    ```javascript
    import React from "react";
-   import GoogleMap from "ReactGoogleMap";
+   import GoogleMap from "./components/GoogleMap";
    import TruckIcon from "./truck.png";
 
    const center = {
@@ -101,11 +101,11 @@ This React wrapper includes the following functionalities: Google Map, Marker, L
 
 4. InfoWindow
 
-   InfoWindow is not an actual component. It is abstracted in the Marker component. Clicking on the marker will open the InfoWindow. The content of InfoWindow is determined by the children of Marker component. In the case where there are multiple markers, clicking on any of the markers will close the active InfoWindow, if any.
+   InfoWindow is not an actual component. It is abstracted in the Marker component. The content of InfoWindow is determined by the children of Marker component. Clicking on the marker will open the InfoWindow. When there are multiple markers, clicking on any of the markers will close the active InfoWindow before opening another, if any.
 
    ```javascript
    import React from "react";
-   import GoogleMap from "ReactGoogleMap";
+   import GoogleMap from "./components/GoogleMap";
    import TruckIcon from "./truck.png";
 
    const center = {
@@ -135,7 +135,7 @@ This React wrapper includes the following functionalities: Google Map, Marker, L
 
    ```javascript
    import React from "react";
-   import GoogleMap from "ReactGoogleMap";
+   import GoogleMap from "./components/GoogleMap";
    import TruckIcon from "./truck.png";
 
    const center = {
