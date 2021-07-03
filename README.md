@@ -1,1 +1,1 @@
-React basic starter template, created with command 'npx create-react-app', with unused files removed.
+A custom React wrapper for Google Map JS API.
