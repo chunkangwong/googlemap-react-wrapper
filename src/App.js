@@ -1,39 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import GoogleMap from "./components/GoogleMap";
+import { TruckIcon, ManIcon } from "./assets";
 
-const getCoord = (coordStr) => {
-  const [lat, lng] = coordStr.split(",");
-  return {
-    lat: parseFloat(lat),
-    lng: parseFloat(lng),
-  };
+const VehicleMarker = ({ position, carNo, carType }) => {
+  return (
+    <>
+      <GoogleMap.Marker position={position} icon={TruckIcon}>
+        <h4>Vehicle# {carNo}</h4>
+        <p>Type: {carType}</p>
+      </GoogleMap.Marker>
+      <GoogleMap.Circle center={position} radius={50} />
+    </>
+  );
 };
 
-function App() {
-  const [coord, setCoord] = useState("1.354186,103.943812");
+const DriverMarker = ({ position, driverName }) => {
+  return (
+    <GoogleMap.Marker position={position} icon={ManIcon}>
+      <h4>Driver: {driverName}</h4>
+    </GoogleMap.Marker>
+  );
+};
 
-  const handleChange = (e) => {
-    setCoord(e.target.value);
+const MapLegend = () => {
+  const style = {
+    backgroundColor: "white",
+    marginLeft: "5px",
+    padding: "10px",
+    border: "1px solid grey",
   };
+  return (
+    <div style={style}>
+      <h1>Legend</h1>
+      <div>
+        <img src={TruckIcon} /> Vehicle
+      </div>
+      <div>
+        <img src={ManIcon} /> Driver
+      </div>
+    </div>
+  );
+};
 
+const App = () => {
   return (
     <div className="App" style={{ height: "100vh" }}>
-      <input value={coord} onChange={handleChange} />
       <GoogleMap
         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
-        center={getCoord(coord)}
+        mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
+        center={{
+          lat: 1.355246,
+          lng: 103.948091,
+        }}
         zoom={16}
         mapTypeControl={false}
         streetViewControl={false}
       >
-        <GoogleMap.Marker position={getCoord(coord)}>
-          <h1>Title</h1>
-          <p>Hello world</p>
-        </GoogleMap.Marker>
+        <VehicleMarker
+          position={{
+            lat: 1.355246,
+            lng: 103.948091,
+          }}
+          carNo="AB1234C"
+          carType="Truck"
+        />
+        <DriverMarker
+          position={{
+            lat: 1.355327,
+            lng: 103.948089,
+          }}
+          driverName="Adam"
+        />
+        <GoogleMap.Legend controlPosition="LEFT_BOTTOM">
+          <MapLegend />
+        </GoogleMap.Legend>
       </GoogleMap>
     </div>
   );
-}
+};
 
 export default App;
