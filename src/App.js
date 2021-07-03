@@ -20,7 +20,7 @@ const MapLegend = () => {
 
 const App = () => {
   return (
-    <div className="App" style={{ height: "100vh" }}>
+    <div className="App">
       <GoogleMap
         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
         mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
