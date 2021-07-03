@@ -1,37 +1,18 @@
 import React from "react";
 import "./App.css";
-import GoogleMap from "./components/GoogleMap";
-import { TruckIcon, ManIcon } from "./assets";
-
-const VehicleMarker = ({ position, carNo, carType }) => {
-  return (
-    <>
-      <GoogleMap.Marker position={position} icon={TruckIcon}>
-        <h4>Vehicle# {carNo}</h4>
-        <p>Type: {carType}</p>
-      </GoogleMap.Marker>
-      <GoogleMap.Circle center={position} radius={50} />
-    </>
-  );
-};
-
-const DriverMarker = ({ position, driverName }) => {
-  return (
-    <GoogleMap.Marker position={position} icon={ManIcon}>
-      <h4>Driver: {driverName}</h4>
-    </GoogleMap.Marker>
-  );
-};
+import { ManIcon, TruckIcon } from "./assets";
+import { GoogleMap } from "./components/GoogleMap";
+import VehicleDriverMarker from "./components/VehicleDriverMarker";
 
 const MapLegend = () => {
   return (
     <div className="MapLegend">
       <h1>Legend</h1>
       <div>
-        <img src={TruckIcon} /> Vehicle
+        <img src={TruckIcon} alt="Vehicle Icon" /> Vehicle
       </div>
       <div>
-        <img src={ManIcon} /> Driver
+        <img src={ManIcon} alt="Driver Icon" /> Driver
       </div>
     </div>
   );
@@ -47,20 +28,18 @@ const App = () => {
           lat: 1.355246,
           lng: 103.948091,
         }}
-        zoom={16}
+        zoom={19}
         mapTypeControl={false}
         streetViewControl={false}
       >
-        <VehicleMarker
-          position={{
+        <VehicleDriverMarker
+          vehiclePos={{
             lat: 1.355246,
             lng: 103.948091,
           }}
-          carNo="AB1234C"
-          carType="Truck"
-        />
-        <DriverMarker
-          position={{
+          vehilceNo="AB1234C"
+          vehicleType="Truck"
+          driverPos={{
             lat: 1.355327,
             lng: 103.948089,
           }}
