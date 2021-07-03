@@ -28,7 +28,19 @@ function App() {
         streetViewControl={false}
       >
         <GoogleMap.Marker position={getCoord(coord)} />
-        <GoogleMap.Legend controlPosition="LEFT_BOTTOM">
+        <GoogleMap.Circle
+          strokeColor="#FF0000"
+          strokeOpacity={0.8}
+          strokeWeight={2}
+          fillColor="#FF0000"
+          fillOpacity={0.35}
+          center={getCoord(coord)}
+          radius={50}
+        />
+        <GoogleMap.Legend
+          controlPosition="LEFT_BOTTOM"
+          style={{ background: "white" }}
+        >
           <h1>Legend</h1>
           <p>Truck</p>
           <p>Driver</p>

@@ -115,7 +115,7 @@ GoogleMap.Legend = function GoogleMapLegend({
   const { map } = useMap();
 
   useEffect(() => {
-    map.controls[window.google.maps.ControlPosition[controlPosition]].push(
+    map?.controls[window.google.maps.ControlPosition[controlPosition]].push(
       legenRef.current
     );
   }, []);
@@ -125,6 +125,25 @@ GoogleMap.Legend = function GoogleMapLegend({
       {children}
     </div>
   );
+};
+
+GoogleMap.Circle = function GoogleMapCircle({ ...props }) {
+  const [circle, setCircle] = useState(null);
+  const { map } = useMap();
+
+  useEffect(() => {
+    const newCircle = new window.google.maps.Circle({
+      map,
+      ...props,
+    });
+    setCircle(newCircle);
+  }, []);
+
+  useEffect(() => {
+    circle?.setOptions({ ...props });
+  }, [props]);
+
+  return <div></div>;
 };
 
 export default GoogleMap;
