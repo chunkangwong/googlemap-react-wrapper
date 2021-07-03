@@ -24,8 +24,15 @@ function App() {
         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
         center={getCoord(coord)}
         zoom={16}
+        mapTypeControl={false}
+        streetViewControl={false}
       >
         <GoogleMap.Marker position={getCoord(coord)} />
+        <GoogleMap.Legend controlPosition="LEFT_BOTTOM">
+          <h1>Legend</h1>
+          <p>Truck</p>
+          <p>Driver</p>
+        </GoogleMap.Legend>
       </GoogleMap>
     </div>
   );
