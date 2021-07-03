@@ -39,8 +39,6 @@ const GoogleMap = ({ apiKey, children, ...props }) => {
     infoWindow: null,
   });
 
-  console.log("GoogleMap rendered");
-
   return (
     <MapContext.Provider value={{ googleMap, mapDispatcher }}>
       <Wrapper apiKey={apiKey}>
@@ -55,8 +53,6 @@ const Map = ({ ...props }) => {
   const mapRef = useRef();
   const { mapDispatcher } = useContext(MapContext);
   const { map } = useMap();
-
-  console.log("Map rendered");
 
   useEffect(() => {
     const newMap = new window.google.maps.Map(mapRef.current, { ...props });
@@ -82,8 +78,6 @@ GoogleMap.Marker = function GoogleMapMarker({ children, ...props }) {
   const markerRef = useRef();
   const [marker, setMarker] = useState(null);
   const { map, infoWindow } = useMap();
-
-  console.log("Marker rendered");
 
   useEffect(() => {
     const newMarker = new window.google.maps.Marker({ map, ...props });
