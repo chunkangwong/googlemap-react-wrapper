@@ -1,3 +1,4 @@
+import { Wrapper } from "@googlemaps/react-wrapper";
 import React, {
   createContext,
   useContext,
@@ -6,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Wrapper } from "@googlemaps/react-wrapper";
+import ReactDOMServer from "react-dom/server";
 
 const MapContext = createContext(null);
 
@@ -75,21 +76,20 @@ const Map = ({ ...props }) => {
 };
 
 GoogleMap.Marker = function GoogleMapMarker({ children, ...props }) {
-  const markerRef = useRef();
   const [marker, setMarker] = useState(null);
   const { map, infoWindow } = useGoogleMap();
 
   useEffect(() => {
     const newMarker = new window.google.maps.Marker({ map, ...props });
-    newMarker.addListener("click", () => {
-      infoWindow?.close();
-      infoWindow?.setContent(markerRef.current);
-      children &&
+    children &&
+      newMarker.addListener("click", () => {
+        infoWindow?.close();
+        infoWindow?.setContent(ReactDOMServer.renderToString(children));
         infoWindow?.open({
           anchor: newMarker,
           map,
         });
-    });
+      });
     setMarker(newMarker);
   }, [map]);
 
@@ -97,7 +97,7 @@ GoogleMap.Marker = function GoogleMapMarker({ children, ...props }) {
     marker?.setOptions({ ...props });
   }, [props]);
 
-  return <div ref={markerRef}>{children}</div>;
+  return <div></div>;
 };
 
 GoogleMap.Legend = function GoogleMapLegend({

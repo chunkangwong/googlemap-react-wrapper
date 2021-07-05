@@ -23,7 +23,6 @@ const App = () => {
     <div className="App">
       <GoogleMap
         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
-        mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
         center={{
           lat: 1.355246,
           lng: 103.948091,
